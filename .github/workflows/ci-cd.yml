@@ -1,8 +1,9 @@
-name: CI/CD
+name: build-and-deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -10,13 +11,13 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Build (nenhum build necessário para app estática)
-        run: echo "Build step - Nenhum processo necessário"
+        run: echo "Build completo"
 
       - name: Deploy no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./
